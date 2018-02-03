@@ -19,5 +19,7 @@
   },
   "author": "Antonio",
   "license": "ISC",
-  "devDependencies": {}
+  "devDependencies": {
+    "@angular/cli": "^1.6.7"
+  }
 }
