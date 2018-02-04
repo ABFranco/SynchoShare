@@ -64,8 +64,8 @@ app.listen(port, () => {
 
 //const server = http.Server(app);
 //server.listen(3000);
-var server = app.listen(3000, '0.0.0.0', function(){
-	console.log('listening to request on port 3000');
+var server = app.listen(port, '0.0.0.0', function(){
+	console.log('listening to request on port ' + port);
 });
 
 // sockets.io

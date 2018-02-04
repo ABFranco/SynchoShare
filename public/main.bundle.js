@@ -272,7 +272,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var HomeComponent = /** @class */ (function () {
     function HomeComponent() {
-        this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__('http://localhost:3000');
+        this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__('https://shrouded-badlands-38226.herokuapp.com/');
     }
     HomeComponent.prototype.ngOnInit = function () {
         this.socket.on('hello', function (data) { return console.log(data); });

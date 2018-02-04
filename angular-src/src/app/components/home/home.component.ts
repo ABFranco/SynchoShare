@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   socket;
 
   constructor() {
-    this.socket = socketIo('http://localhost:3000'); }
+    this.socket = socketIo('https://shrouded-badlands-38226.herokuapp.com/'); }
 
   ngOnInit() {
     this.socket.on('hello', (data) => console.log(data));
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
           btn = document.getElementById('send'),
           output = document.getElementById('output'),
           feedback = document.getElementById('feedback');
-          
+
     // listen for events
     this.socket.on('chat', function(data) {
     	output.innerHTML += '<p><strong>' + data.handle + ':</strong>' + data.message + '</p>';
