@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody{\n    font-family: 'Verdana';\n}\nh2{\n    font-size: 20px;\n    padding: 10px 20px;\n    color: #575ed8;\n}\n#antonio-chat{\n    max-width: 600px;\n    margin: 30px auto;\n    border: 1px solid #ddd;\n    -webkit-box-shadow: 1px 3px 5px rgba(0,0,0,0.05);\n            box-shadow: 1px 3px 5px rgba(0,0,0,0.05);\n    border-radius: 2px;\n}\n#chat-window{\n    height: 400px;\n    overflow: auto;\n    background: #f9f9f9;\n}\n#output p{\n    padding: 14px 0px;\n    margin: 0 20px;\n    border-bottom: 1px solid #e9e9e9;\n    color: #555;\n}\n#feedback p{\n    color: #aaa;\n    padding: 14px 0px;\n    margin: 0 20px;\n}\n#output strong{\n    color: #575ed8;\n}\nlabel{\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n    display: block;\n    padding: 10px 20px;\n}\ninput{\n    padding: 10px 20px;\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n    background: #eee;\n    border: 0;\n    display: block;\n    width: 100%;\n    background: #fff;\n    border-bottom: 1px solid #eee;\n    font-family: Verdana;\n    font-size: 16px;\n}\nbutton{\n    background: #575ed8;\n    color: #fff;\n    font-size: 18px;\n    border: 0;\n    padding: 12px;\n    margin: 10px;\n    width: 100%;\n    border-radius: 0 0 2px 2px;\n}\n", ""]);
 
 // exports
 
@@ -378,7 +378,7 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("../../../../../src/styles.css");
@@ -386,5 +386,5 @@ module.exports = __webpack_require__("../../../../../src/styles.css");
 
 /***/ })
 
-},[2]);
+},[3]);
 //# sourceMappingURL=styles.bundle.js.map

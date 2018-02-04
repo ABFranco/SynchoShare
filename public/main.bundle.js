@@ -55,9 +55,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
+//import * as socketIo from 'socket.io-client';
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.title = 'app works';
+        /*
+        ngOnInit(): void {
+          const socket = socketIo('http://localhost:3000');
+      
+          socket.on('hello', (data) => console.log(data));
+      
+        }
+        */
     }
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -238,7 +247,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron text-center\">\n  <h1>MEAN Authentication App</h1>\n  <p class=\"lead\">Welcome to this website</p>\n  <div>\n    <a class=\"btn btn-primary\" [routerLink]=\"['/register']\">Register</a>\n    <a class=\"btn btn-primary\" [routerLink]=\"['/login']\">Login</a>\n  </div>\n\n</div>\n\n<div class=\"row\">\n  <div class=\"col-md-4\">\n    <h3>Express backend</h3>\n    <p>Stuff</p>\n  </div>\n  <div class=\"col-md-4\">\n    <h3>Angular-CLI</h3>\n    <p>Stuff</p>\n  </div>\n  <div class=\"col-md-4\">\n    <h3>JWT Tokens</h3>\n    <p>Stuff</p>\n  </div>\n</div>\n"
+module.exports = "<div class=\"jumbotron text-center\">\n  <h1>MEAN Authentication App</h1>\n  <p class=\"lead\">Welcome to this website</p>\n  <div>\n    <a class=\"btn btn-primary\" [routerLink]=\"['/register']\">Register</a>\n    <a class=\"btn btn-primary\" [routerLink]=\"['/login']\">Login</a>\n  </div>\n\n</div>\n\n<div class=\"row\">\n  <div class=\"col-md-4\">\n    <h3>Express backend</h3>\n    <p>Stuff</p>\n  </div>\n  <div class=\"col-md-4\">\n    <h3>Angular-CLI</h3>\n    <p>Stuff</p>\n  </div>\n  <div class=\"col-md-4\">\n    <h3>JWT Tokens</h3>\n    <p>Stuff</p>\n  </div>\n</div>\n\n<h1>Chat ayy</h1>\n<div id='antonio-chat'>\n\t<div id='chat-window'>\n\t\t<div id='output'></div>\n\t\t<div id='feedback'></div>\n\t</div>\n</div>\n<input [(ngModel)]=\"name\" id=\"handle\" type=\"text\" placeholder=\"Name\">\n<input [(ngModel)]=\"message\" id=\"message\" type=\"text\" placeholder=\"Message\">\n<button id=\"send\" (click)=\"send()\">Send</button>\n\n<button id=\"play\"><div id=\"playPause\">Play Music</div></button>\n<button id=\"stop\">Stop Music</button>\n<!--audio id=\"audio\" src=\"/music/song.mp3\"></audio-->\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/\nsocket.io.js\"></script>\n"
 
 /***/ }),
 
@@ -248,6 +257,8 @@ module.exports = "<div class=\"jumbotron text-center\">\n  <h1>MEAN Authenticati
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client__ = __webpack_require__("../../../../socket.io-client/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_socket_io_client__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -258,10 +269,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var HomeComponent = /** @class */ (function () {
     function HomeComponent() {
+        this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__('http://localhost:3000');
     }
     HomeComponent.prototype.ngOnInit = function () {
+        this.socket.on('hello', function (data) { return console.log(data); });
+        var message = document.getElementById('message'), handle = document.getElementById('handle'), btn = document.getElementById('send'), output = document.getElementById('output'), feedback = document.getElementById('feedback');
+        // listen for events
+        this.socket.on('chat', function (data) {
+            output.innerHTML += '<p><strong>' + data.handle + ':</strong>' + data.message + '</p>';
+        });
+        this.socket.on('typing', function (data) {
+            feedback.innerHTML = '<p><em>' + data + ' is typing a messsage...</em></p>';
+        });
+        this.socket.on('cancel', function (data) {
+            feedback.innerHTML = '';
+        });
+    };
+    HomeComponent.prototype.send = function () {
+        //var message = document.getElementById('message');
+        console.log(this.message);
+        this.socket.emit('chat', {
+            message: this.message,
+            handle: this.name
+        });
+        this.message = "";
+        this.socket.emit('cancel');
+    };
+    HomeComponent.prototype.typing = function () {
+        if (this.message.length === 0) {
+            this.socket.emit('cancel');
+        }
+        else {
+            this.socket.emit('typing', this.message);
+        }
     };
     HomeComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -845,6 +888,13 @@ Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* pl
 
 module.exports = __webpack_require__("../../../../../src/main.ts");
 
+
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ })
 

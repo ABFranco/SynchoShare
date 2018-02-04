@@ -6,6 +6,10 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 
+// attempt 2 for socket.io
+const http = require('http');
+const socketIo = require('socket.io');
+
 // connect to database
 mongoose.connect(config.database);
 
@@ -19,8 +23,9 @@ mongoose.connection.on('error', (err) => {
 })
 
 const app = express();
-const port = process.env.PORT || 8080;
-//const port = 3000;
+//const port = process.env.PORT || 8080;
+const port = 3000;
+
 
 const users = require('./routes/users');
 
@@ -51,6 +56,47 @@ app.get('*', (req, res) => {
 })
 
 // start server
+/*
 app.listen(port, () => {
   console.log('Server started on port '+port);
+});
+*/
+
+//const server = http.Server(app);
+//server.listen(3000);
+var server = app.listen(3000, '0.0.0.0', function(){
+	console.log('listening to request on port 3000');
+});
+
+// sockets.io
+//app.get('/', (req, res) => res.send("hello world"));
+
+const io = socketIo(server);
+io.on('connection', (socket) => {
+  socket.emit("hello", {
+    greeting: 'hello antonio'
+  });
+
+  console.log('made socket connection', socket.id);
+  // handle chat event
+	socket.on('chat', function(data){
+		io.sockets.emit('chat', data);
+	});
+
+	socket.on('typing', function(data) {
+		socket.broadcast.emit('typing', data);
+	});
+
+	socket.on('cancel', function() {
+		socket.broadcast.emit('cancel');
+	});
+
+	// handle music events
+	socket.on('play', function() {
+		socket.broadcast.emit('play');
+	});
+
+	socket.on('stop', function() {
+		socket.broadcast.emit('stop');
+	});
 });

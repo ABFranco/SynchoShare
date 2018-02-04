@@ -22,3 +22,20 @@
     <p>Stuff</p>
   </div>
 </div>
+
+<h1>Chat ayy</h1>
+<div id='antonio-chat'>
+	<div id='chat-window'>
+		<div id='output'></div>
+		<div id='feedback'></div>
+	</div>
+</div>
+<input [(ngModel)]="name" id="handle" type="text" placeholder="Name">
+<input [(ngModel)]="message" id="message" type="text" placeholder="Message">
+<button id="send" (click)="send()">Send</button>
+
+<button id="play"><div id="playPause">Play Music</div></button>
+<button id="stop">Stop Music</button>
+<!--audio id="audio" src="/music/song.mp3"></audio-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/
+socket.io.js"></script>
