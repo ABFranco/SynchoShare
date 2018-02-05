@@ -804,8 +804,8 @@ var RoomComponent = /** @class */ (function () {
     function RoomComponent(authService, router) {
         this.authService = authService;
         this.router = router;
-        //this.socket = socketIo('https://shrouded-badlands-38226.herokuapp.com/');
-        this.socket = __WEBPACK_IMPORTED_MODULE_3_socket_io_client__('localhost:3000');
+        this.socket = __WEBPACK_IMPORTED_MODULE_3_socket_io_client__('https://shrouded-badlands-38226.herokuapp.com/');
+        //this.socket = socketIo('localhost:3000');
         this.audio = null;
         this.playing = false;
     }
