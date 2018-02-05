@@ -33,6 +33,15 @@ export class AuthService {
       .map(res => res.json());
   }
 
+  send(){
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('users/profile', {headers: headers})
+      .map(res => res.json());
+  }
+
   storeUserData(token, user){
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));

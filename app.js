@@ -23,8 +23,8 @@ mongoose.connection.on('error', (err) => {
 })
 
 const app = express();
-const port = process.env.PORT || 8080;
-//const port = 3000;
+//const port = process.env.PORT || 8080;
+const port = 3000;
 
 
 const users = require('./routes/users');
@@ -33,7 +33,7 @@ const users = require('./routes/users');
 app.use(cors());
 
 // set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'publicc')));
 
 // body parser Middleware
 app.use(bodyParser.json());
@@ -52,7 +52,7 @@ app.get('/', (req,res) =>{
 })
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+  res.sendFile(path.join(__dirname, 'publicc/index.html'));
 })
 
 // start server
