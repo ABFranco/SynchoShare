@@ -760,7 +760,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#name {\r\n  color: #575ed8;\r\n}\r\n\r\n#antonio-chat{\r\n    max-width: 600px;\r\n    margin: 30px auto;\r\n    border: 1px solid #ddd;\r\n    -webkit-box-shadow: 1px 3px 5px rgba(0,0,0,0.05);\r\n            box-shadow: 1px 3px 5px rgba(0,0,0,0.05);\r\n    border-radius: 2px;\r\n}\r\n\r\n#chat-window{\r\n    height: 400px;\r\n    overflow: auto;\r\n    background: #f9f9f9;\r\n}\r\n\r\n#output p{\r\n    padding: 14px 0px;\r\n    margin: 0 20px;\r\n    border-bottom: 1px solid #e9e9e9;\r\n    color: #555;\r\n}\r\n\r\n#feedback p{\r\n    color: #aaa;\r\n    padding: 14px 0px;\r\n    margin: 0 20px;\r\n}\r\n\r\n#output strong{\r\n    color: #575ed8;\r\n}\r\n\r\n#music button{\r\n    background: #575ed8;\r\n    color: #fff;\r\n    font-size: 14px;\r\n    border: 0;\r\n    padding: 12px;\r\n    margin: 10px;\r\n    width: 25%;\r\n    border-radius: 0 0 2px 2px;\r\n}\r\n\r\nbutton{\r\n    background: #575ed8;\r\n    color: #fff;\r\n    font-size: 18px;\r\n    border: 0;\r\n    padding: 12px;\r\n    margin: 10px;\r\n    width: 100%;\r\n    border-radius: 0 0 2px 2px;\r\n}\r\n", ""]);
+exports.push([module.i, "#name {\r\n  color: #575ed8;\r\n}\r\n\r\n#antonio-chat{\r\n    max-width: 600px;\r\n    margin: 30px auto;\r\n    border: 1px solid #ddd;\r\n    -webkit-box-shadow: 1px 3px 5px rgba(0,0,0,0.05);\r\n            box-shadow: 1px 3px 5px rgba(0,0,0,0.05);\r\n    border-radius: 2px;\r\n}\r\n\r\n#chat-window{\r\n    height: 400px;\r\n    overflow: auto;\r\n    background: #f9f9f9;\r\n}\r\n\r\n#output p{\r\n    padding: 14px 0px;\r\n    margin: 0 20px;\r\n    border-bottom: 1px solid #e9e9e9;\r\n    color: #555;\r\n}\r\n\r\n#feedback p{\r\n    color: #aaa;\r\n    padding: 14px 0px;\r\n    margin: 0 20px;\r\n}\r\n\r\n#output strong{\r\n    color: #575ed8;\r\n}\r\n\r\n#music button{\r\n    background: #575ed8;\r\n    color: #fff;\r\n    font-size: 14px;\r\n    border: 0;\r\n    padding: 12px;\r\n    margin: 10px;\r\n    width: 100%;\r\n    border-radius: 0 0 2px 2px;\r\n}\r\n\r\nbutton{\r\n    background: #575ed8;\r\n    color: #fff;\r\n    font-size: 18px;\r\n    border: 0;\r\n    padding: 12px;\r\n    margin: 10px;\r\n    width: 100%;\r\n    border-radius: 0 0 2px 2px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -821,6 +821,7 @@ var RoomComponent = /** @class */ (function () {
         var message = document.getElementById('message'), handle = document.getElementById('name'), btn = document.getElementById('send'), output = document.getElementById('output'), feedback = document.getElementById('feedback');
         // listen for events
         this.socket.on('chat', function (data) {
+            console.log("chat");
             output.innerHTML += '<p><strong>' + data.handle + ':</strong>' + data.message + '</p>';
         });
         this.socket.on('typing', function (data) {
@@ -831,28 +832,90 @@ var RoomComponent = /** @class */ (function () {
         });
         // music events
         this.socket.on('play', function (data) {
-            var audio = new Audio();
-            audio.src = "/music/Overjoyed.mp3";
-            audio.load();
             var playPause = document.getElementById("playPause");
-            if (audio.paused) {
-                audio.play();
-                playPause.innerHTML = 'Pause Music';
+            if (this.playing) {
+                this.audio.pause();
+                playPause.innerHTML = 'Play Music';
+                this.playing = false;
             }
             else {
-                audio.pause();
-                playPause.innerHTML = 'Play Music';
+                if (this.audio != null) {
+                    this.audio.play();
+                    playPause.innerHTML = 'Pause Music';
+                    this.playing = true;
+                }
+                else {
+                    playPause.innerHTML = 'Select a song';
+                }
             }
         });
         this.socket.on('stop', function (data) {
-            var audio = new Audio();
-            audio.src = "/music/Overjoyed.mp3";
-            audio.load();
-            var playPause = document.getElementById("playPause");
-            console.log(audio.currentTime);
-            audio.currentTime = 0;
-            audio.pause();
-            playPause.innerHTML = 'Play Music';
+            if (this.audio == null) {
+                var playPause = document.getElementById("playPause");
+                playPause.innerHTML = 'Select a song';
+            }
+            else {
+                this.audio.currentTime = 0;
+                this.audio.pause();
+                this.playing = false;
+                var playPause = document.getElementById("playPause");
+                playPause.innerHTML = 'Play Music';
+            }
+        });
+        this.socket.on('audio1', function () {
+            if (this.playing) {
+                this.audio.pause();
+                var playPause = document.getElementById("playPause");
+                playPause.innerHTML = 'Play Music';
+                this.playing = false;
+            }
+            this.audio = new Audio();
+            this.audio.src = "../../../assets/music/If-I-Aint-Got-You.mp3";
+            this.audio.load();
+        });
+        this.socket.on('audio2', function () {
+            if (this.playing) {
+                this.audio.pause();
+                var playPause = document.getElementById("playPause");
+                playPause.innerHTML = 'Play Music';
+                this.playing = false;
+            }
+            this.audio = new Audio();
+            this.audio.src = "../../../assets/music/I-Will-Always-Love-You.mp3";
+            this.audio.load();
+        });
+        this.socket.on('audio3', function () {
+            if (this.playing) {
+                this.audio.pause();
+                var playPause = document.getElementById("playPause");
+                playPause.innerHTML = 'Play Music';
+                this.playing = false;
+            }
+            this.audio = new Audio();
+            this.audio.src = "../../../assets/music/Overjoyed.mp3";
+            this.audio.load();
+        });
+        this.socket.on('audio4', function () {
+            if (this.playing) {
+                this.audio.pause();
+                var playPause = document.getElementById("playPause");
+                playPause.innerHTML = 'Play Music';
+                this.playing = false;
+            }
+            this.audio = new Audio();
+            this.audio.src = "../../../assets/music/Rocketeer.mp3";
+            this.audio.load();
+        });
+        this.socket.on('audio5', function () {
+            if (this.playing) {
+                this.audio.pause();
+                var playPause = document.getElementById("playPause");
+                playPause.innerHTML = 'Play Music';
+                this.playing = false;
+            }
+            this.audio = new Audio();
+            this.audio.src = "../../../assets/music/When-you-believe.mp3";
+            this.audio.load();
         });
     };
     RoomComponent.prototype.send = function () {
@@ -880,24 +943,7 @@ var RoomComponent = /** @class */ (function () {
         }
     };
     RoomComponent.prototype.play = function () {
-        //this.socket.emit('play');
-        //var audio = document.getElementById("audio1");
-        var playPause = document.getElementById("playPause");
-        if (this.playing) {
-            this.audio.pause();
-            playPause.innerHTML = 'Play Music';
-            this.playing = false;
-        }
-        else {
-            if (this.audio != null) {
-                this.audio.play();
-                playPause.innerHTML = 'Pause Music';
-                this.playing = true;
-            }
-            else {
-                playPause.innerHTML = 'Select a song';
-            }
-        }
+        this.socket.emit('play');
     };
     RoomComponent.prototype.songReset = function () {
         this.audio.pause();
@@ -906,57 +952,22 @@ var RoomComponent = /** @class */ (function () {
         this.playing = false;
     };
     RoomComponent.prototype.audio1 = function () {
-        if (this.playing) {
-            this.songReset();
-        }
-        this.audio = new Audio();
-        this.audio.src = "../../../assets/music/If-I-Aint-Got-You.mp3";
-        this.audio.load();
+        this.socket.emit('audio1');
     };
     RoomComponent.prototype.audio2 = function () {
-        if (this.playing) {
-            this.songReset();
-        }
-        this.audio = new Audio();
-        this.audio.src = "../../../assets/music/I-Will-Always-Love-You.mp3";
-        this.audio.load();
+        this.socket.emit('audio2');
     };
     RoomComponent.prototype.audio3 = function () {
-        if (this.playing) {
-            this.songReset();
-        }
-        this.audio = new Audio();
-        this.audio.src = "../../../assets/music/Overjoyed.mp3";
-        this.audio.load();
+        this.socket.emit('audio3');
     };
     RoomComponent.prototype.audio4 = function () {
-        if (this.playing) {
-            this.songReset();
-        }
-        this.audio = new Audio();
-        this.audio.src = "../../../assets/music/Rocketeer.mp3";
-        this.audio.load();
+        this.socket.emit('audio4');
     };
     RoomComponent.prototype.audio5 = function () {
-        if (this.playing) {
-            this.songReset();
-        }
-        this.audio = new Audio();
-        this.audio.src = "../../../assets/music/When-you-believe.mp3";
-        this.audio.load();
+        this.socket.emit('audio5');
     };
     RoomComponent.prototype.stop = function () {
-        if (this.audio == null) {
-            playPause.innerHTML = 'Select a song';
-        }
-        else {
-            this.socket.emit('stop');
-            this.audio.currentTime = 0;
-            this.audio.pause();
-            this.playing = false;
-            var playPause = document.getElementById("playPause");
-            playPause.innerHTML = 'Play Music';
-        }
+        this.socket.emit('stop');
     };
     RoomComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({

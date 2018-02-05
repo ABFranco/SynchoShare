@@ -46,6 +46,7 @@ export class RoomComponent implements OnInit {
 
     // listen for events
     this.socket.on('chat', function(data) {
+      console.log("chat");
     	output.innerHTML += '<p><strong>' + data.handle + ':</strong>' + data.message + '</p>';
     });
 
@@ -61,28 +62,90 @@ export class RoomComponent implements OnInit {
 
 
     this.socket.on('play', function(data) {
-      var audio = new Audio();
-      audio.src = "/music/Overjoyed.mp3"
-      audio.load();
-    	var playPause = document.getElementById("playPause");
-    	if (audio.paused) {
-    		audio.play();
-    		playPause.innerHTML = 'Pause Music';
-    	} else {
-    		audio.pause();
-    		playPause.innerHTML = 'Play Music';
-    	}
+      var playPause = document.getElementById("playPause");
+      if (this.playing) {
+        this.audio.pause();
+        playPause.innerHTML = 'Play Music';
+        this.playing = false;
+      } else {
+        if(this.audio != null) {
+          this.audio.play();
+          playPause.innerHTML = 'Pause Music';
+          this.playing = true;
+        } else {
+          playPause.innerHTML = 'Select a song';
+        }
+      }
     });
 
     this.socket.on('stop', function(data) {
-      var audio = new Audio();
-      audio.src = "/music/Overjoyed.mp3"
-      audio.load();
-    	var playPause = document.getElementById("playPause");
-    	console.log(audio.currentTime);
-    	audio.currentTime = 0;
-    	audio.pause();
-    	playPause.innerHTML = 'Play Music';
+      if(this.audio == null) {
+        var playPause = document.getElementById("playPause");
+        playPause.innerHTML = 'Select a song';
+      } else {
+        this.audio.currentTime = 0;
+        this.audio.pause();
+        this.playing = false;
+        var playPause = document.getElementById("playPause");
+        playPause.innerHTML = 'Play Music';
+      }
+    });
+
+
+    this.socket.on('audio1', function() {
+      if (this.playing) {
+        this.audio.pause();
+        var playPause = document.getElementById("playPause");
+        playPause.innerHTML = 'Play Music';
+        this.playing = false;
+      }
+      this.audio = new Audio();
+      this.audio.src = "../../../assets/music/If-I-Aint-Got-You.mp3";
+      this.audio.load();
+    });
+    this.socket.on('audio2', function() {
+      if (this.playing) {
+        this.audio.pause();
+        var playPause = document.getElementById("playPause");
+        playPause.innerHTML = 'Play Music';
+        this.playing = false;
+      }
+      this.audio = new Audio();
+      this.audio.src = "../../../assets/music/I-Will-Always-Love-You.mp3";
+      this.audio.load();
+    });
+    this.socket.on('audio3', function() {
+      if (this.playing) {
+        this.audio.pause();
+        var playPause = document.getElementById("playPause");
+        playPause.innerHTML = 'Play Music';
+        this.playing = false;
+      }
+      this.audio = new Audio();
+      this.audio.src = "../../../assets/music/Overjoyed.mp3";
+      this.audio.load();
+    });
+    this.socket.on('audio4', function() {
+      if (this.playing) {
+        this.audio.pause();
+        var playPause = document.getElementById("playPause");
+        playPause.innerHTML = 'Play Music';
+        this.playing = false;
+      }
+      this.audio = new Audio();
+      this.audio.src = "../../../assets/music/Rocketeer.mp3";
+      this.audio.load();
+    });
+    this.socket.on('audio5', function() {
+      if (this.playing) {
+        this.audio.pause();
+        var playPause = document.getElementById("playPause");
+        playPause.innerHTML = 'Play Music';
+        this.playing = false;
+      }
+      this.audio = new Audio();
+      this.audio.src = "../../../assets/music/When-you-believe.mp3";
+      this.audio.load();
     });
   }
 
@@ -115,23 +178,7 @@ export class RoomComponent implements OnInit {
 
 
   play() {
-    //this.socket.emit('play');
-    //var audio = document.getElementById("audio1");
-    var playPause = document.getElementById("playPause");
-    if (this.playing) {
-      this.audio.pause();
-      playPause.innerHTML = 'Play Music';
-      this.playing = false;
-    } else {
-      if(this.audio != null) {
-        this.audio.play();
-        playPause.innerHTML = 'Pause Music';
-        this.playing = true;
-      } else {
-        playPause.innerHTML = 'Select a song';
-      }
-    }
-
+    this.socket.emit('play');
   }
 
   songReset(){
@@ -142,61 +189,23 @@ export class RoomComponent implements OnInit {
   }
 
   audio1() {
-    if (this.playing) {
-      this.songReset();
-    }
-    this.audio = new Audio();
-    this.audio.src = "../../../assets/music/If-I-Aint-Got-You.mp3";
-    this.audio.load();
+    this.socket.emit('audio1');
   }
   audio2() {
-    if (this.playing) {
-      this.songReset();
-    }
-    this.audio = new Audio();
-    this.audio.src = "../../../assets/music/I-Will-Always-Love-You.mp3";
-    this.audio.load();
+    this.socket.emit('audio2');
   }
   audio3() {
-    if (this.playing) {
-      this.songReset();
-    }
-    this.audio = new Audio();
-    this.audio.src = "../../../assets/music/Overjoyed.mp3";
-    this.audio.load();
+    this.socket.emit('audio3');
   }
   audio4() {
-    if (this.playing) {
-      this.songReset();
-    }
-    this.audio = new Audio();
-    this.audio.src = "../../../assets/music/Rocketeer.mp3";
-    this.audio.load();
+    this.socket.emit('audio4');
   }
   audio5() {
-    if (this.playing) {
-      this.songReset();
-    }
-    this.audio = new Audio();
-    this.audio.src = "../../../assets/music/When-you-believe.mp3";
-    this.audio.load();
+    this.socket.emit('audio5');
   }
 
-
-
   stop() {
-    if(this.audio == null) {
-      var playPause = document.getElementById("playPause");
-      playPause.innerHTML = 'Select a song';
-    } else {
-      this.socket.emit('stop');
-      this.audio.currentTime = 0;
-      this.audio.pause();
-      this.playing = false;
-      var playPause = document.getElementById("playPause");
-      playPause.innerHTML = 'Play Music';
-    }
-
+    this.socket.emit('stop');
   }
 
 

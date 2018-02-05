@@ -94,10 +94,26 @@ io.on('connection', (socket) => {
 
 	// handle music events
 	socket.on('play', function() {
-		socket.broadcast.emit('play');
+		io.sockets.emit('play');
 	});
 
 	socket.on('stop', function() {
-		socket.broadcast.emit('stop');
+		io.sockets.emit('stop');
+	});
+
+  socket.on('audio1', function() {
+		io.sockets.emit('audio1');
+	});
+  socket.on('audio2', function() {
+		io.sockets.emit('audio2');
+	});
+  socket.on('audio3', function() {
+		io.sockets.emit('audio3');
+	});
+  socket.on('audio4', function() {
+		io.sockets.emit('audio4');
+	});
+  socket.on('audio5', function() {
+		io.sockets.emit('audio5');
 	});
 });
