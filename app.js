@@ -10,6 +10,7 @@ const config = require('./config/database');
 const http = require('http');
 const socketIo = require('socket.io');
 
+
 // connect to database
 mongoose.connect(config.database);
 
@@ -33,7 +34,7 @@ const users = require('./routes/users');
 app.use(cors());
 
 // set static folder
-app.use(express.static(path.join(__dirname, 'publicc')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // body parser Middleware
 app.use(bodyParser.json());
@@ -52,7 +53,7 @@ app.get('/', (req,res) =>{
 })
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'publicc/index.html'));
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 })
 
 // start server

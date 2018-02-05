@@ -13,11 +13,15 @@ export class RoomComponent implements OnInit {
   name: String;
   message: String;
   socket: any;
+  audio: any;
+  playing: boolean;
 
 
   constructor(private authService:AuthService, private router:Router) {
     //this.socket = socketIo('https://shrouded-badlands-38226.herokuapp.com/');
     this.socket = socketIo('localhost:3000');
+    this.audio = null;
+    this.playing = false;
    }
 
   ngOnInit() {
@@ -52,6 +56,34 @@ export class RoomComponent implements OnInit {
     this.socket.on('cancel', function(data) {
     	feedback.innerHTML = '';
     });
+
+    // music events
+
+
+    this.socket.on('play', function(data) {
+      var audio = new Audio();
+      audio.src = "/music/Overjoyed.mp3"
+      audio.load();
+    	var playPause = document.getElementById("playPause");
+    	if (audio.paused) {
+    		audio.play();
+    		playPause.innerHTML = 'Pause Music';
+    	} else {
+    		audio.pause();
+    		playPause.innerHTML = 'Play Music';
+    	}
+    });
+
+    this.socket.on('stop', function(data) {
+      var audio = new Audio();
+      audio.src = "/music/Overjoyed.mp3"
+      audio.load();
+    	var playPause = document.getElementById("playPause");
+    	console.log(audio.currentTime);
+    	audio.currentTime = 0;
+    	audio.pause();
+    	playPause.innerHTML = 'Play Music';
+    });
   }
 
   send () {
@@ -80,5 +112,94 @@ export class RoomComponent implements OnInit {
       this.socket.emit('typing', this.message);
     }
   }
+
+
+  play() {
+    //this.socket.emit('play');
+    //var audio = document.getElementById("audio1");
+    var playPause = document.getElementById("playPause");
+    if (this.playing) {
+      this.audio.pause();
+      playPause.innerHTML = 'Play Music';
+      this.playing = false;
+    } else {
+      if(this.audio != null) {
+        this.audio.play();
+        playPause.innerHTML = 'Pause Music';
+        this.playing = true;
+      } else {
+        playPause.innerHTML = 'Select a song';
+      }
+    }
+
+  }
+
+  songReset(){
+    this.audio.pause();
+    var playPause = document.getElementById("playPause");
+    playPause.innerHTML = 'Play Music';
+    this.playing = false;
+  }
+
+  audio1() {
+    if (this.playing) {
+      this.songReset();
+    }
+    this.audio = new Audio();
+    this.audio.src = "../../../assets/music/If-I-Aint-Got-You.mp3";
+    this.audio.load();
+  }
+  audio2() {
+    if (this.playing) {
+      this.songReset();
+    }
+    this.audio = new Audio();
+    this.audio.src = "../../../assets/music/I-Will-Always-Love-You.mp3";
+    this.audio.load();
+  }
+  audio3() {
+    if (this.playing) {
+      this.songReset();
+    }
+    this.audio = new Audio();
+    this.audio.src = "../../../assets/music/Overjoyed.mp3";
+    this.audio.load();
+  }
+  audio4() {
+    if (this.playing) {
+      this.songReset();
+    }
+    this.audio = new Audio();
+    this.audio.src = "../../../assets/music/Rocketeer.mp3";
+    this.audio.load();
+  }
+  audio5() {
+    if (this.playing) {
+      this.songReset();
+    }
+    this.audio = new Audio();
+    this.audio.src = "../../../assets/music/When-you-believe.mp3";
+    this.audio.load();
+  }
+
+
+
+  stop() {
+    if(this.audio == null) {
+      var playPause = document.getElementById("playPause");
+      playPause.innerHTML = 'Select a song';
+    } else {
+      this.socket.emit('stop');
+      this.audio.currentTime = 0;
+      this.audio.pause();
+      this.playing = false;
+      var playPause = document.getElementById("playPause");
+      playPause.innerHTML = 'Play Music';
+    }
+
+  }
+
+
+
 
 }

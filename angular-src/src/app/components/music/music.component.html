@@ -1,0 +1,25 @@
+<h2>File uploading currently not implemented</h2>
+
+<form (submit)="upload()">
+	<div class="add">
+		<!--label class="choose_file">
+			<input type="file" name="file">
+			Choose file here
+		</label-->
+
+		<input type="file" name="file" id="file" class="inputfile" />
+		<label for="file">Choose a file</label>
+
+	</div>
+	<div class="add">
+		<input type="text" name="song_name" placeholder="Song Name">
+		<input type="text" name="artist" placeholder="Artist">
+		<input type="text" name="album" placeholder="Album (optional)">
+		<input type="text" name="genre" placeholder="Genre (optional)">
+
+	</div>
+	<div class="add">
+		<button type="submit" name="upload" class="btn btn-primary">Upload .mp3 file</button>
+	</div>
+
+</form>

@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   onRegisterSubmit(){
     const user = {
       name: this.name,
-      email: this.email,
+      //email: this.email,
       username: this.username,
       password: this.password
     }
@@ -39,11 +39,13 @@ export class RegisterComponent implements OnInit {
       return false;
     }
 
-    // validate email
+    /*
+    // validate email (email currently not needed)
     if(!this.validateService.validateEmail(user.email)) {
       this.flashMessage.show('Please use a valid email!', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
+    */
 
     // register user
     this.authService.registerUser(user).subscribe(data => {

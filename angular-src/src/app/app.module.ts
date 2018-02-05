@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RoomComponent } from './components/room/room.component';
+import { MusicComponent } from './components/music/music.component';
 
 import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
@@ -26,7 +27,8 @@ const appRoutes:Routes = [
   {path:'login', component: LoginComponent},
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
-  {path:'room', component: RoomComponent, canActivate:[AuthGuard]}
+  {path:'room', component: RoomComponent, canActivate:[AuthGuard]},
+  {path:'music', component: MusicComponent, canActivate:[AuthGuard]}
 ]
 
 @NgModule({
@@ -38,7 +40,8 @@ const appRoutes:Routes = [
     HomeComponent,
     DashboardComponent,
     ProfileComponent,
-    RoomComponent
+    RoomComponent,
+    MusicComponent
   ],
   imports: [
     BrowserModule,

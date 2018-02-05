@@ -1,20 +1,44 @@
-<h1>Chat ayy</h1>
-<div id='antonio-chat'>
-	<div id='chat-window'>
-		<div id='output'></div>
-		<div id='feedback'></div>
+<h1>Music Room</h1>
+<div class = "container">
+	<div class="row">
+		<div id="music" class="col-6">
+			<h2>Choose from these songs (sax covers):</h2>
+			<div class="row">
+				<div class="col-6">
+					<button id="play" (click)="play()"><div id="playPause">Play Music</div></button>
+				</div>
+				<div class="col-6">
+					<button id="stop" (click)="stop()">Stop Music</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<button (click)="audio1()">If I Aint Got You</button>
+				<button (click)="audio2()">I Will Always Love You</button>
+				<button (click)="audio3()">Overjoyed</button>
+				<button (click)="audio4()">Rockateer</button>
+				<button (click)="audio5()">When You Believe</button>
+			</div>
+
+		</div>
+		<div class="col-6">
+			<h2>Chatroom</h2>
+			<div id='antonio-chat'>
+				<div id='chat-window'>
+					<div id='output'></div>
+					<div id='feedback'></div>
+				</div>
+			</div>
+
+			<div *ngIf="user">
+				<label id="name">{{user.name}}:</label>
+				<input [(ngModel)]="message" id="message" type="text" placeholder="Message">
+			</div>
+
+			<button id="send" (click)="send()">Send</button>
+		</div>
 	</div>
 </div>
 
-<div *ngIf="user">
-	<label>{{user.name}}:</label>
-	<input [(ngModel)]="message" id="message" type="text" placeholder="Message">
-</div>
-
-<button id="send" (click)="send()">Send</button>
-
-<button id="play"><div id="playPause">Play Music</div></button>
-<button id="stop">Stop Music</button>
-<!--audio id="audio" src="/music/song.mp3"></audio-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/
 socket.io.js"></script>
