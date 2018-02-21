@@ -18,8 +18,8 @@ export class RoomComponent implements OnInit {
 
 
   constructor(private authService:AuthService, private router:Router) {
-    this.socket = socketIo('https://shrouded-badlands-38226.herokuapp.com/');
-    //this.socket = socketIo('localhost:3000');
+    //this.socket = socketIo('https://shrouded-badlands-38226.herokuapp.com/');
+    this.socket = socketIo('localhost:3000');
     this.audio = null;
     this.playing = false;
    }
@@ -47,7 +47,7 @@ export class RoomComponent implements OnInit {
     // listen for events
     this.socket.on('chat', function(data) {
       console.log("chat");
-    	output.innerHTML += '<p><strong>' + data.handle + ':</strong>' + data.message + '</p>';
+    	output.innerHTML += '<p _ngcontent-c2><strong _ngcontent-c2>' + data.handle + ':</strong>' + data.message + '</p>';
     });
 
     this.socket.on('typing', function(data) {
