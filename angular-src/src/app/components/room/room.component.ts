@@ -18,7 +18,7 @@ export class RoomComponent implements OnInit {
 
 
   constructor(private authService:AuthService, private router:Router) {
-    this.socket = socketIo('https://shrouded-badlands-38226.herokuapp.com/');
+    this.socket = socketIo('https://synchoshare.herokuapp.com/');
     ///this.socket = socketIo('localhost:3000');
     this.audio = null;
     this.playing = false;
