@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<div class=\"container\">\n  <flash-messages></flash-messages>\n  <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<app-navbar></app-navbar>\r\n<div class=\"container\">\r\n  <flash-messages></flash-messages>\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -194,7 +194,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Dashboard</h2>\n<p>\n  Welcome to your dashboard.\n</p>\n"
+module.exports = "<h2 class=\"page-header\">Dashboard</h2>\r\n<p>\r\n  Welcome to your dashboard.\r\n</p>\r\n"
 
 /***/ }),
 
@@ -242,7 +242,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "p, h3 {\r\n  text-align: center;\r\n}\r\n\r\n.jumbotron {\r\n  color: rgba(255, 255, 255, 0.5);\r\n}\r\n", ""]);
+exports.push([module.i, "p, h3 {\r\n  text-align: center;\r\n}\r\n\r\n.jumbotron {\r\n\r\n}\r\n", ""]);
 
 // exports
 
@@ -255,7 +255,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron text-center\">\n  <h1>SynchoShare</h1>\n  <p class=\"lead\">Share music and interact with friends</p>\n  <!--div>\n    <a class=\"btn btn-primary\" [routerLink]=\"['/register']\">Register</a>\n    <a class=\"btn btn-primary\" [routerLink]=\"['/login']\">Login</a>\n  </div-->\n\n</div>\n\n<div class=\"row\">\n  <div class=\"col-md-4\">\n    <h3>Personal accounts</h3>\n    <p>Register and login to your own personal account.</p>\n  </div>\n  <div class=\"col-md-4\">\n    <h3>Interact through messaging and music</h3>\n    <p>Navigate to the \"Music Room\" after logging in to interact with other accounts.</p>\n  </div>\n  <div class=\"col-md-4\">\n    <h3>This websites future...</h3>\n    <p>This website will eventually be updated to allow personal music uploads.</p>\n  </div>\n</div>\n"
+module.exports = "<div class=\"jumbotron text-center\">\r\n  <h1>SynchoShare</h1>\r\n  <p class=\"lead\">Share music and interact with friends</p>\r\n  <!--div>\r\n    <a class=\"btn btn-primary\" [routerLink]=\"['/register']\">Register</a>\r\n    <a class=\"btn btn-primary\" [routerLink]=\"['/login']\">Login</a>\r\n  </div-->\r\n\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-md-4\">\r\n    <h3>Personal accounts</h3>\r\n    <p>Register and login to your own personal account.</p>\r\n  </div>\r\n  <div class=\"col-md-4\">\r\n    <h3>Interact through messaging and music</h3>\r\n    <p>Navigate to the \"Music Room\" after logging in to interact with other accounts.</p>\r\n  </div>\r\n  <div class=\"col-md-4\">\r\n    <h3>This websites future...</h3>\r\n    <p>This website will eventually be updated to allow personal music uploads.</p>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -413,7 +413,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/music/music.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>File uploading currently not implemented</h2>\n\n<form (submit)=\"upload()\">\n\t<div class=\"add\">\n\t\t<!--label class=\"choose_file\">\n\t\t\t<input type=\"file\" name=\"file\">\n\t\t\tChoose file here\n\t\t</label-->\n\n\t\t<input type=\"file\" name=\"file\" id=\"file\" class=\"inputfile\" />\n\t\t<label for=\"file\">Choose a file</label>\n\n\t</div>\n\t<div class=\"add\">\n\t\t<input type=\"text\" name=\"song_name\" placeholder=\"Song Name\">\n\t\t<input type=\"text\" name=\"artist\" placeholder=\"Artist\">\n\t\t<input type=\"text\" name=\"album\" placeholder=\"Album (optional)\">\n\t\t<input type=\"text\" name=\"genre\" placeholder=\"Genre (optional)\">\n\n\t</div>\n\t<div class=\"add\">\n\t\t<button type=\"submit\" name=\"upload\" class=\"btn btn-primary\">Upload .mp3 file</button>\n\t</div>\n\n</form>\n"
+module.exports = "<h2>File uploading currently not implemented</h2>\r\n\r\n<form (submit)=\"upload()\">\r\n\t<div class=\"add\">\r\n\t\t<!--label class=\"choose_file\">\r\n\t\t\t<input type=\"file\" name=\"file\">\r\n\t\t\tChoose file here\r\n\t\t</label-->\r\n\r\n\t\t<input type=\"file\" name=\"file\" id=\"file\" class=\"inputfile\" />\r\n\t\t<label for=\"file\">Choose a file</label>\r\n\r\n\t</div>\r\n\t<div class=\"add\">\r\n\t\t<input type=\"text\" name=\"song_name\" placeholder=\"Song Name\">\r\n\t\t<input type=\"text\" name=\"artist\" placeholder=\"Artist\">\r\n\t\t<input type=\"text\" name=\"album\" placeholder=\"Album (optional)\">\r\n\t\t<input type=\"text\" name=\"genre\" placeholder=\"Genre (optional)\">\r\n\r\n\t</div>\r\n\t<div class=\"add\">\r\n\t\t<button type=\"submit\" name=\"upload\" class=\"btn btn-primary\">Upload .mp3 file</button>\r\n\t</div>\r\n\r\n</form>\r\n"
 
 /***/ }),
 
@@ -508,7 +508,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-inverse fixed-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarsExampleDefault\" aria-controls=\"navbarsExampleDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">SynchoShare</a>\n    </div>\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav navbar-left\">\n        <li [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/']\">Home</a></li>\n      </ul>\n\n      <ul class=\"nav navbar-nav navbar-right\">\n        <!--li *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/dashboard']\">Dashboard</a></li-->\n        <li *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/profile']\">Profile</a></li>\n        <li *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/room']\">My Room</a></li>\n        <li *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/music']\">My Music</a></li>\n\n        <li *ngIf=\"!authService.loggedIn()\"[routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/login']\">Login</a></li>\n        <li *ngIf=\"!authService.loggedIn()\"[routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/register']\">Register</a></li>\n\n        <li *ngIf=\"authService.loggedIn()\"><a (click)=\"onLogoutClick()\"href=\"#\">Logout</a></li>\n      </ul>\n\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-inverse fixed-top\">\r\n  <div class=\"container\">\r\n    <div class=\"navbar-header\">\r\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarsExampleDefault\" aria-controls=\"navbarsExampleDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n        <span class=\"navbar-toggler-icon\"></span>\r\n      </button>\r\n      <a class=\"navbar-brand\" href=\"#\">SynchoShare</a>\r\n    </div>\r\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\r\n      <ul class=\"nav navbar-nav navbar-left\">\r\n        <li [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/']\">Home</a></li>\r\n      </ul>\r\n\r\n      <ul class=\"nav navbar-nav navbar-right\">\r\n        <!--li *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/dashboard']\">Dashboard</a></li-->\r\n        <li *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/profile']\">Profile</a></li>\r\n        <li *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/room']\">My Room</a></li>\r\n        <li *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/music']\">My Music</a></li>\r\n\r\n        <li *ngIf=\"!authService.loggedIn()\"[routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/login']\">Login</a></li>\r\n        <li *ngIf=\"!authService.loggedIn()\"[routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"><a [routerLink]=\"['/register']\">Register</a></li>\r\n\r\n        <li *ngIf=\"authService.loggedIn()\"><a (click)=\"onLogoutClick()\"href=\"#\">Logout</a></li>\r\n      </ul>\r\n\r\n    </div>\r\n  </div>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -590,7 +590,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\">\n  <h2 class=\"page-header\">Profile of {{user.name}}</h2>\n  <ul class=\"list group\">\n    <li class=\"list-group-item\">Username: {{user.username}}</li>\n    <!--li class=\"list-group-item\">Email: {{user.email}}</li-->\n  </ul>\n</div>\n"
+module.exports = "<div *ngIf=\"user\">\r\n  <h2 class=\"page-header\">Profile of {{user.name}}</h2>\r\n  <ul class=\"list group\">\r\n    <li class=\"list-group-item\">Username: {{user.username}}</li>\r\n    <!--li class=\"list-group-item\">Email: {{user.email}}</li-->\r\n  </ul>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -664,7 +664,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Register</h2>\n\n<form (submit)=\"onRegisterSubmit()\">\n  <div class=\"form-group\">\n    <label>Name</label>\n    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control\"/>\n  </div>\n  <div class=\"form-group\">\n    <label>Username</label>\n    <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control\"/>\n  </div>\n  <!--div class=\"form-group\"> Email currently not needed\n    <label>Email</label>\n    <input type=\"text\" [(ngModel)]=\"email\" name=\"email\"class=\"form-control\"/>\n  </div-->\n  <div class=\"form-group\">\n    <label>Password</label>\n    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\"class=\"form-control\"/>\n  </div>\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\" />\n</form>\n"
+module.exports = "<h2 class=\"page-header\">Register</h2>\r\n\r\n<form (submit)=\"onRegisterSubmit()\">\r\n  <div class=\"form-group\">\r\n    <label>Name</label>\r\n    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>Username</label>\r\n    <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control\"/>\r\n  </div>\r\n  <!--div class=\"form-group\"> Email currently not needed\r\n    <label>Email</label>\r\n    <input type=\"text\" [(ngModel)]=\"email\" name=\"email\"class=\"form-control\"/>\r\n  </div-->\r\n  <div class=\"form-group\">\r\n    <label>Password</label>\r\n    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\"class=\"form-control\"/>\r\n  </div>\r\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\" />\r\n</form>\r\n"
 
 /***/ }),
 
