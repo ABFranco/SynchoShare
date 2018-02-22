@@ -242,7 +242,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "p, h3 {\r\n  text-align: center;\r\n}\r\n", ""]);
+exports.push([module.i, "p, h3 {\r\n  text-align: center;\r\n}\r\n\r\n.jumbotron {\r\n  color: rgba(255, 255, 255, 0.5);\r\n}\r\n", ""]);
 
 // exports
 
@@ -773,7 +773,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/room/room.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Music Room</h1>\n<div class = \"container\">\n\t<div class=\"row\">\n\t\t<div id=\"music\" class=\"col-6\">\n\t\t\t<h2>Choose from these songs (sax covers):</h2>\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-6\">\n\t\t\t\t\t<button id=\"play\" (click)=\"play()\"><div id=\"playPause\">Play Music</div></button>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-6\">\n\t\t\t\t\t<button id=\"stop\" (click)=\"stop()\">Stop Music</button>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"row\">\n\t\t\t\t<button (click)=\"audio1()\">If I Aint Got You</button>\n\t\t\t\t<button (click)=\"audio2()\">I Will Always Love You</button>\n\t\t\t\t<button (click)=\"audio3()\">Overjoyed</button>\n\t\t\t\t<button (click)=\"audio4()\">Rockateer</button>\n\t\t\t\t<button (click)=\"audio5()\">When You Believe</button>\n\t\t\t</div>\n\n\t\t</div>\n\t\t<div class=\"col-6\">\n\t\t\t<h2>Chatroom</h2>\n\t\t\t<div id='antonio-chat'>\n\t\t\t\t<div id='chat-window'>\n\t\t\t\t\t<div id='output'>\n\t\t\t\t\t\t<p><strong>name:</strong>message</p>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div id='feedback'></div>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"user\">\n\t\t\t\t<label id=\"name\">{{user.name}}:</label>\n\t\t\t\t<input [(ngModel)]=\"message\" id=\"message\" type=\"text\" placeholder=\"Message\">\n\t\t\t</div>\n\n\t\t\t<button id=\"send\" (click)=\"send()\">Send</button>\n\t\t</div>\n\t</div>\n</div>\n\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/\nsocket.io.js\"></script>\n"
+module.exports = "<h1>Music Room</h1>\r\n<div class = \"container\">\r\n\t<div class=\"row\">\r\n\t\t<div id=\"music\" class=\"col-6\">\r\n\t\t\t<h2>Choose from these songs (sax covers):</h2>\r\n\t\t\t<div class=\"row\">\r\n\t\t\t\t<div class=\"col-6\">\r\n\t\t\t\t\t<button id=\"play\" (click)=\"play()\"><div id=\"playPause\">Play Music</div></button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"col-6\">\r\n\t\t\t\t\t<button id=\"stop\" (click)=\"stop()\">Stop Music</button>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"row\">\r\n\t\t\t\t<button (click)=\"audio1()\">If I Aint Got You</button>\r\n\t\t\t\t<button (click)=\"audio2()\">I Will Always Love You</button>\r\n\t\t\t\t<button (click)=\"audio3()\">Overjoyed.mp3</button>\r\n\t\t\t\t<button (click)=\"audio4()\">Rockateer.mp3</button>\r\n\t\t\t\t<button (click)=\"audio5()\">When You Believe</button>\r\n\t\t\t</div>\r\n\r\n\t\t</div>\r\n\t\t<div class=\"col-6\">\r\n\t\t\t<h2>Chatroom</h2>\r\n\t\t\t<div id='antonio-chat'>\r\n\t\t\t\t<div id='chat-window'>\r\n\t\t\t\t\t<div id='output'></div>\r\n\t\t\t\t\t<div id='feedback'></div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div *ngIf=\"user\">\r\n\t\t\t\t<label id=\"name\">{{user.name}}:</label>\r\n\t\t\t\t<input [(ngModel)]=\"message\" id=\"message\" type=\"text\" placeholder=\"Message\">\r\n\t\t\t</div>\r\n\r\n\t\t\t<button id=\"send\" (click)=\"send()\">Send</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/\r\nsocket.io.js\"></script>\r\n"
 
 /***/ }),
 
@@ -804,8 +804,8 @@ var RoomComponent = /** @class */ (function () {
     function RoomComponent(authService, router) {
         this.authService = authService;
         this.router = router;
-        //this.socket = socketIo('https://shrouded-badlands-38226.herokuapp.com/');
-        this.socket = __WEBPACK_IMPORTED_MODULE_3_socket_io_client__('localhost:3000');
+        this.socket = __WEBPACK_IMPORTED_MODULE_3_socket_io_client__('https://synchoshare.herokuapp.com/');
+        ///this.socket = socketIo('localhost:3000');
         this.audio = null;
         this.playing = false;
     }
