@@ -800,12 +800,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var RoomComponent = /** @class */ (function () {
     function RoomComponent(authService, router) {
         this.authService = authService;
         this.router = router;
-        this.socket = __WEBPACK_IMPORTED_MODULE_3_socket_io_client__('https://synchoshare.herokuapp.com/');
-        ///this.socket = socketIo('localhost:3000');
+        //this.socket = socketIo('https://synchoshare.herokuapp.com/');
+        this.socket = __WEBPACK_IMPORTED_MODULE_3_socket_io_client__('localhost:3000');
         this.audio = null;
         this.playing = false;
     }
@@ -822,7 +823,7 @@ var RoomComponent = /** @class */ (function () {
         // listen for events
         this.socket.on('chat', function (data) {
             console.log("chat");
-            output.innerHTML += '<p _ngcontent-c2><strong _ngcontent-c2>' + data.handle + ':</strong>' + data.message + '</p>';
+            output.innerHTML += '<p><strong>' + data.handle + ':</strong>' + data.message + '</p>';
         });
         this.socket.on('typing', function (data) {
             feedback.innerHTML = '<p><em>' + data + ' is typing a messsage...</em></p>';
@@ -973,7 +974,8 @@ var RoomComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-room',
             template: __webpack_require__("../../../../../src/app/components/room/room.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/components/room/room.component.css")]
+            styles: [__webpack_require__("../../../../../src/app/components/room/room.component.css")],
+            encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]])
     ], RoomComponent);

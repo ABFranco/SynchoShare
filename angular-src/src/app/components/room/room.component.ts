@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import * as socketIo from 'socket.io-client';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.css']
+  styleUrls: ['./room.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RoomComponent implements OnInit {
   user:Object;
@@ -19,7 +21,7 @@ export class RoomComponent implements OnInit {
 
   constructor(private authService:AuthService, private router:Router) {
     this.socket = socketIo('https://synchoshare.herokuapp.com/');
-    ///this.socket = socketIo('localhost:3000');
+    //this.socket = socketIo('localhost:3000');
     this.audio = null;
     this.playing = false;
    }
@@ -47,7 +49,7 @@ export class RoomComponent implements OnInit {
     // listen for events
     this.socket.on('chat', function(data) {
       console.log("chat");
-    	output.innerHTML += '<p _ngcontent-c2><strong _ngcontent-c2>' + data.handle + ':</strong>' + data.message + '</p>';
+    	output.innerHTML += '<p><strong>' + data.handle + ':</strong>' + data.message + '</p>';
     });
 
     this.socket.on('typing', function(data) {
